@@ -1,33 +1,6 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
-// {
-//     "name": "Bdfsfs",
-//     "email": "VG@fas.com",
-//     "password": "!$4fMzYHv5R6U",
-//     "role": "admin",
-//     "addresses": [
-//       {
-//         "name": "Anshul Sinha",
-//         "email": "anshulanant19@gmail.com",
-//         "fullname": "",
-//         "phone": "07667346011",
-//         "street": "Flat No -2C , Block -B, Laxmi Narayan Apartment Baraitu , Ranchi Ramgarh",
-//         "city": "Bhubaneshwar ",
-//         "state": "Odisha",
-//         "pinCode": "751024"
-//       },
-//       {
-//         "name": "Bikaram",
-//         "email": "B@1231.com",
-//         "phone": "2244567",
-//         "street": "Chawri Bazar",
-//         "city": "Raipaur",
-//         "state": "Himachal",
-//         "pinCode": "222444"
-//       }
-//     ],
-//     "id": 5
-//   }
+
 
 const userSchema = new Schema({
     name : { type : String , required : true},
