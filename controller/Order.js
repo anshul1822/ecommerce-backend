@@ -2,11 +2,11 @@ const {Order} = require('../model/Order');
 
 exports.fetchOrderByUser = async(req,res) => {
     // console.log(req.params);
-    const {user} = req.params;
+    const id = req.user.id;
     
     try{
-        const items = await Order.find({user : user}).populate('user');
-        // console.log(items);
+        const items = await Order.find({user : id}); // .populate('user');
+        console.log("fetchOrdersByuser", items);
         res.status(200).json(items);
     }catch(err){
         console.log(err);
@@ -15,8 +15,11 @@ exports.fetchOrderByUser = async(req,res) => {
 }
 
 exports.createOrder = async (req,res) => {
-    // console.log("create Order",req.body);
-    const order = new Order(req.body);
+    
+    const newOrder = { ...req.body , user : req.user.id};
+    // console.log("create Order", newOrder);
+    const order = new Order(newOrder);
+
     // console.log("create Order", order);
     try{
         const doc = await order.save();
@@ -86,7 +89,7 @@ exports.fetchAllOrders = async (req,res) => {
     // }
 }
 
-exports.updateCart = async (req,res) => {
+exports.updateOrder = async (req,res) => {
 
     // const {id} = req.params;
     // try{

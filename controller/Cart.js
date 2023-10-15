@@ -1,10 +1,14 @@
 const {Cart} = require('../model/Cart');
 
 exports.fetchCartByUser = async(req,res) => {
-    const {user} = req.query;
+    const {id} = req.user;
 
     try{
-        const cartItems = await Cart.find({user : user}).populate('user').populate('product');
+        const cartItems = await Cart.find({user : id})
+        // .populate({ path: 'user',
+                    // select: 'firstName lastName', // Select the fields you want to populate from the user document
+    //   })
+      .populate('product');
         res.status(200).json(cartItems);
     }catch(err){
         res.status(400).json(err);
@@ -13,7 +17,9 @@ exports.fetchCartByUser = async(req,res) => {
 
 exports.addToCart = async (req,res) => {
 
-    const cart = new Cart(req.body);
+    const {id} = req.user;
+    const newItem = {...req.body, user : id};
+    const cart = new Cart(newItem);
     try{
         const doc = await cart.save();
         const result = doc.populate('product');
@@ -25,11 +31,12 @@ exports.addToCart = async (req,res) => {
 
 exports.deleteFromCart = async (req,res) => {
 
-    const {id, userId} = req.params;
-    // console.log(req.params);
+    const {productId} = req.params;
+    const {id : userId} = req.user;
+    console.log("deleteFromCart", req.params);
     try{
         // console.log("product id to be deleted", id, userId);
-        Cart.deleteOne({product : id, user : userId}).then((deletedDocument) => {
+        Cart.deleteOne({product : productId, user : userId}).then((deletedDocument) => {
             // if(deletedDocument) console.log("Deleted the doucment", deletedDocument);
             // else console.log("doucment not found", deletedDocument);
         }).catch((err) => {
@@ -44,8 +51,11 @@ exports.deleteFromCart = async (req,res) => {
 exports.updateCart = async (req,res) => {
 
     const {id} = req.params;
+
     try{
-        const cart = await Cart.findByIdAndUpdate({_id : id}, {quantity : req.body.quantity}, {new:true}).populate('user').populate('product');
+        const cart = await Cart.findByIdAndUpdate({_id : id}, {quantity : req.body.quantity}, {new:true})
+        // .populate('user')
+        .populate('product');
         // const cartItem = await Cart.find({_id : id}).populate('user').populate('product');
         res.status(200).json(cart);
     }catch(err){

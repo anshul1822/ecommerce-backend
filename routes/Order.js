@@ -4,6 +4,6 @@ const { createOrder, fetchOrderByUser, fetchAllOrders } = require("../controller
 
 const router = express.Router();
 
-router.post('/', createOrder).get('/', fetchAllOrders).get('/:user', fetchOrderByUser);
+router.post('/', createOrder).get('/all-orders', fetchAllOrders).get('/', fetchOrderByUser);
 
 exports.router = router;
