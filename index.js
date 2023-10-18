@@ -242,6 +242,10 @@ server.post("/create-payment-intent", async (req, res) => {
  
   server.use('/cart', isAuth, cartRouter.router);
   server.use('/orders', isAuth, orderRouter.router);
+
+ server.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
   
 
 
@@ -256,9 +260,7 @@ server.get('/', (req,res) => {
     res.json({status : 'success'});
 })
 
-// server.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
-//   });
+
 
 server.listen(PORT, ()=>{
     console.log('server started');
