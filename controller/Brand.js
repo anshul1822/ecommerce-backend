@@ -4,6 +4,7 @@ exports.fetchAllBrands = async (req,res) => {
     //here we need all query string
     try{
         const brands = await Brand.find({}).exec();
+        // console.log('All Brands', brands);
         res.status(200).json(brands);
     }catch(err){
         res.status(400).json(err);

@@ -5,6 +5,8 @@ exports.fetchAllCategories = async (req,res) => {
     //here we need all query string
     try{
         const categories = await Category.find({}).exec();
+        // console.log('All Categories', categories);
+
         res.status(200).json(categories);
     }catch(err){
         res.status(400).json(err);

@@ -10,6 +10,7 @@ const orderSchema = new Schema({
     selectedAddress : {type : Schema.Types.Mixed, required : true},
     // we can add enum types
     paymentMethod : {type : String, required : true},
+    paymentStatus: {type:String, default:'pending'},
     status : {type : String, default : 'pending', required : true},
 });
 

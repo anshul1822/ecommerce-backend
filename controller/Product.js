@@ -53,6 +53,7 @@ exports.fetchAllProducts = async (req,res) => {
 
     try{
         const docs = await query.exec();
+        // console.log('All Products', docs);
         res.set('X-Total-Count', totalDocs);
         res.status(200).json(docs);
     }catch(err){

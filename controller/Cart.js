@@ -33,7 +33,7 @@ exports.deleteFromCart = async (req,res) => {
 
     const {productId} = req.params;
     const {id : userId} = req.user;
-    console.log("deleteFromCart", req.params);
+    // console.log("deleteFromCart", req.params);
     try{
         // console.log("product id to be deleted", id, userId);
         Cart.deleteOne({product : productId, user : userId}).then((deletedDocument) => {

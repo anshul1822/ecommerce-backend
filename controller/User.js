@@ -4,7 +4,7 @@ const {User} = require('../model/User');
 exports.fetchLoggedInUserDetails = async (req,res) => {
 
     const id = req.user.id;
-    console.log('req.user', req.user);
+    // console.log('req.user', req.user);
     try{
         const doc = await User.findById(id, 'name email role addresses orders').exec();
         //console.log("doc", doc);
