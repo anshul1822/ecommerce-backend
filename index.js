@@ -256,9 +256,9 @@ server.get('/', (req,res) => {
     res.json({status : 'success'});
 })
 
-server.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
+// server.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
+//   });
 
 server.listen(PORT, ()=>{
     console.log('server started');
