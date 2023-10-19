@@ -1,5 +1,7 @@
 ## ecommerce-Fullstack-MERN
 
+### Dummy User -> email : ramesh@gmail.com pwd : Ramesh@10 
+
 ### Login Page
 ![image](https://github.com/anshul1822/ecommerce-backend/assets/68806086/7c279008-fd47-425b-85e7-ee02554cd2be)
 
