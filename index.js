@@ -46,6 +46,8 @@ const PORT = process.env.PORT;
 // If you are testing with the CLI, find the secret by running 'stripe listen'
 // If you are using an endpoint defined with the API or dashboard, look in your webhook settings
 // at https://dashboard.stripe.com/webhooks
+// This is your test secret API key.
+const stripe = require("stripe")(process.env.STRIPE_SERVER_ENDPOINT);
 const endpointSecret = process.env.STRIPE_ENDPOINT_SECRET;
 
 server.post('/webhook', express.raw({type: 'application/json'}), async (request, response) => {
@@ -198,8 +200,7 @@ passport.use( 'local', new LocalStrategy(
 
   //Payment
 
-// This is your test secret API key.
-const stripe = require("stripe")(process.env.STRIPE_SERVER_ENDPOINT);
+
 
 // const calculateOrderAmount = (items) => {
 //   // Replace this constant with a calculation of the order's amount
